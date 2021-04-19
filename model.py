@@ -30,6 +30,7 @@ import tensorflow as tf
 # What I need the AI to learn is to generate these human-like mouse movements.
 # Things like straight lines are existent, but not a lot.
 # I hope the data I have provided should be enough for the start of the AI.
+
 def process_data(minimum_length=20):
     data = pd.read_csv('data/user_data.csv')
     mact_data = data['mact_data'].to_list()
