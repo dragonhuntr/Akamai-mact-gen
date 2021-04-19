@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: #120404;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="position: absolute; top: 245px; left: 70px; width: 5px; height: 5px; color: pink;"></div>
+  </body>
+
+  <script>
+    document.body.append(document.createElement('canvas'));
+    const MACT = prompt('MACT');
+
+    const mousePoints = MACT.split(';').map((MACTValue) => {
+      const [index, type, time, X, Y, checksum] = MACTValue.split(',');
+
+      if (!X || !Y || !time) return;
+
+      return { X: parseInt(X), Y: parseInt(Y), delay: parseInt(time) };
+    });
+
+    console.log(mousePoints);
+
+    const canvas = document.getElementsByTagName('canvas')[0],
+      context = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const firstMousePoint = mousePoints[0],
+      lastMousePoint = mousePoints[mousePoints.length - 2];
+
+    context.lineCap = 'round';
+    context.strokeStyle = '#ffffff';
+    context.fillStyle = '#ffffff';
+
+    context.moveTo(firstMousePoint.X, firstMousePoint.Y);
+
+    context.fillRect(firstMousePoint.X, firstMousePoint.Y, 4, 4);
+    context.fillText(`${firstMousePoint.X}, ${firstMousePoint.Y}`, firstMousePoint.X + 10, firstMousePoint.Y);
+
+    context.fillRect(lastMousePoint.X, lastMousePoint.Y, 4, 4);
+    context.fillText(`${lastMousePoint.X}, ${lastMousePoint.Y}`, lastMousePoint.X + 10, lastMousePoint.Y);
+
+    for (let mousePointIndex = 1; mousePointIndex < mousePoints.length; mousePointIndex++) {
+      const mousePoint = mousePoints[mousePointIndex];
+
+      if (!mousePoint) continue;
+
+      setTimeout(() => {
+        context.lineTo(mousePoint.X, mousePoint.Y);
+        context.stroke();
+      }, mousePoint.delay);
+    }
+  </script>
+</html>
