@@ -1,11 +1,3 @@
-# build 
-`docker build -t mouse .`
-
-
-# run
-`docker run -d -p 5000:5000 --name mouse mouse`
-
-
 # Akamai AI Mact Generator
 
 A somewhat working mact gen.
