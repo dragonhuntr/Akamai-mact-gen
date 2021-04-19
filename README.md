@@ -1,7 +1,7 @@
 # Akamai AI Mact Generator
 
-A somewhat working mact gen.
-Got it build by some guy a while ago, never really used it.
+A somewhat working mact gen.<br/>
+Got it build by some guy a while ago, never really used it.<br/>
 Can't also promise it's any good, lol.
 
 &nbsp;
